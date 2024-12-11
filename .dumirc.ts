@@ -1,24 +1,28 @@
 import { defineConfig } from 'dumi';
 
 export default defineConfig({
-  base: '/bi-graph/',
-  publicPath: '/bi-graph/',
+  base: '/bi_graph/',
+  publicPath: '/bi_graph/',
   outputPath: 'docs-dist',
-  locales: [{
-    id: 'zh-CN',
-    name: '中文'
-  }],
+  locales: [
+    {
+      id: 'zh-CN',
+      name: '中文',
+    },
+  ],
   themeConfig: {
     name: 'Bi-graph',
     prefersColor: {
       default: 'auto',
-      switch: true
-    }
+      switch: true,
+    },
   },
   resolve: {
-    atomDirs: [{
-      type: 'component',
-      dir: 'src/components'
-    }]
-  }
+    atomDirs: [
+      {
+        type: 'component',
+        dir: 'src/components',
+      },
+    ],
+  },
 });
