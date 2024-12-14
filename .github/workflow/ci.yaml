@@ -1,0 +1,38 @@
+name: CI Checks
+
+on:
+  pull_request:
+   branches:
+    - main
+
+jobs:
+  lint:
+    name: Lint Code
+    runs_on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm install
+      - name: Run ESLint
+        run: npm run lint
+  build_package:
+    name: Build Package
+    runs_on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm install
+      - name: Build components
+        run: npm run build
+      - name: Build doc site
+        run: npm run docs:build
