@@ -1,8 +1,6 @@
 import { defineConfig } from 'dumi';
 
 export default defineConfig({
-  base: '/bi_graph/',
-  publicPath: '/bi_graph/',
   outputPath: 'docs-dist',
   locales: [
     {
@@ -11,7 +9,7 @@ export default defineConfig({
     },
   ],
   themeConfig: {
-    name: 'Bi-graph',
+    name: 'BIGraph',
     prefersColor: {
       default: 'auto',
       switch: true,
