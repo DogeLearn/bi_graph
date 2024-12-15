@@ -1,0 +1,49 @@
+name: Publish to npm
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: "Version type to update (major, minor, patch, prerelease)"
+        required: true
+        default: "patch"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 检出代码
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 设置 Node.js 环境
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+
+      # 安装依赖
+      - name: Install dependencies
+        run: npm install
+
+      # 更新版本号
+      - name: Update version
+        run: |
+          npm version ${{ github.event.inputs.version_type }} --no-git-tag-version
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add package.json package-lock.json
+          git commit -m "chore(release): bump version to $(node -p "require('./package.json').version")"
+          git push origin HEAD
+
+      # 编译代码
+      - name: Build project
+        run: npm run build
+
+      # 发布到 npm
+      - name: Publish to npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish
