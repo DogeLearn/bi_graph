@@ -8,7 +8,7 @@ on:
 jobs:
   lint:
     name: Lint Code
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -18,11 +18,11 @@ jobs:
           node-version: 22
       - name: Install dependencies
         run: npm install
-      - name: Run ESLint
-        run: npm run lint
+      - name: Run ESLint (only on ts/js)
+        run: npm run lint:es
   build_package:
     name: Build Package
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
