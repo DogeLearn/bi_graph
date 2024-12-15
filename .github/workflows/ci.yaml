@@ -18,8 +18,8 @@ jobs:
           node-version: 22
       - name: Install dependencies
         run: npm install
-      - name: Run ESLint
-        run: npm run lint
+      - name: Run ESLint (only on ts/js)
+        run: npm run lint:es
   build_package:
     name: Build Package
     runs-on: ubuntu-latest
