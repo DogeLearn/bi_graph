@@ -1,7 +1,7 @@
 # Graph
 
 ```jsx
-import { Graph } from 'bi_graph';
+import { Graph } from '@michaeltan/bi_graph';
 
 const demoData = [
   {

@@ -1,7 +1,7 @@
 # Dataframe
 
 ```jsx
-import { Dataframe } from 'bi_graph';
+import { Dataframe } from '@michaeltan/bi_graph';
 
 const demoData = {
   dataSource: [
