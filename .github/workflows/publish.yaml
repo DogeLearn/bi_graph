@@ -13,10 +13,24 @@ on:
         default: "patch"
 
 jobs:
-  publish:
+  check-role:
     runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id
+    steps:
+      - name: Check if user is admin
+        id: check_admin
+        run: |
+          curl -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+               -H "Accept: application/vnd.github.v3+json" \
+               https://api.github.com/repos/${{ github.repository }}/collaborators/${{ github.actor }}/permission \
+               | jq '.permission' > role.txt
+          cat role.txt
+      - name: Run only for admin
+        if: ${{ steps.check_admin.outputs.role == 'admin' }}
+        run: echo "This step is only executed by an admin."
 
+  publish:
+    needs: check-role
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
