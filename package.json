@@ -3,7 +3,7 @@
   "version": "0.0.4",
   "description": "A React self-adapted BI graph component",
   "repository": {
-    "url": "https://github.com/MichaelTan9999/bi_graph"
+    "url": "https://github.com/DogeLearn/bi_graph"
   },
   "license": "MIT",
   "module": "dist/index.js",
